@@ -1,31 +1,30 @@
 # Goal Tracker Dashboard
 
 
-🔗 **[Live Demo]((https://goal-tracker-6kuh.vercel.app/))** _(update with your actual link)_
-
+🔗 [Live Demo](https://goal-tracker-6kuh.vercel.app/)
 ---
 
 ## Features Checklist
 
-- [x] **Full CRUD Operations** — Create, Read, Update, Delete goals with validation
-- [x] **React Router (Multi-Page)** — 10+ pages with protected auth routes
-- [x] **Progress Tracking** — Visual progress bars with auto-completion detection
-- [x] **XP + Level System** — Earn XP per log, auto-level up (100 XP per level)
-- [x] **Streak System** — Per-goal streaks + global streak based on consecutive daily activity
-- [x] **Goal Types** — Daily, Count, and Time-based goals
-- [x] **Categories** — 8 categories with stats and bar chart visualization
-- [x] **Archive System** — Completed goals archived; can be restored and restarted
-- [x] **Authentication** — Login/Signup with localStorage persistence
-- [x] **Protected Routes** — Unauthenticated users redirected to login
-- [x] **Internationalization (i18n)** — Full English (LTR) + Persian/Farsi (RTL) support
-- [x] **Theme Toggle** — Dark/Light mode with neon-inspired design
-- [x] **Responsive Design** — Mobile-first, works on all screen sizes
-- [x] **Charts** — Dashboard area chart + Categories bar chart (Recharts)
-- [x] **Confirm Dialogs** — Delete confirmation to prevent accidents
-- [x] **Snackbar Notifications** — Success/error feedback on actions
-- [x] **Search & Filter** — Search goals, filter by status, sort by progress/newest/category
-- [x] **Empty States** — Friendly messages when no data exists
-- [x] **Password Strength Meter** — Visual feedback during signup
+- [x] Full CRUD Operations — Create, Read, Update, Delete goals with validation
+- [x] React Router (Multi-Page) — 10+ pages with protected auth routes
+- [x] Progress Tracking — Visual progress bars with auto-completion detection
+- [x] XP + Level System — Earn XP per log, auto-level up (100 XP per level)
+- [x] Streak System — Per-goal streaks + global streak based on consecutive daily activity
+- [x] Goal Types — Daily, Count, and Time-based goals
+- [x] Categories — 8 categories with stats and bar chart visualization
+- [x] Archive System — Completed goals archived; can be restored and restarted
+- [x] Authentication — Login/Signup with localStorage persistence
+- [x] Protected Routes — Unauthenticated users redirected to login
+- [x] Internationalization (i18n) — Full English (LTR) + Persian/Farsi (RTL) support
+- [x] Theme Toggle — Dark/Light mode with neon-inspired design
+- [x] Responsive Design — Mobile-first, works on all screen sizes
+- [x] Charts — Dashboard area chart + Categories bar chart (Recharts)
+- [x] Confirm Dialogs — Delete confirmation to prevent accidents
+- [x] Snackbar Notifications — Success/error feedback on actions
+- [x] Search & Filter — Search goals, filter by status, sort by progress/newest/category
+- [x] Empty States — Friendly messages when no data exists
+- [x] Password Strength Meter — Visual feedback during signup
 
 ---
 
@@ -33,9 +32,9 @@
 
 ### Desktop
 
-| Dashboard | Goals Page | EditGoals |
+| Dashboard | Goals Page | sign up |
 |-----------|-----------|--------------|
-| ![Dashboard](./public/assets/screenshots/desktop-dashboard.png) | ![Goals](./public/assets/screenshots/desktop-goals.png) | ![Details](./public/assets/screenshots/edit-goal.png) |
+| ![Dashboard](./public/assets/screenshots/desktop-dashboard.png) | ![Goals](./public/assets/screenshots/desktop-goals.png) | ![Details](./public/assets/screenshots/sign-up.png) |
 
 | New Goal | Categories | Settings |
 |----------|-----------|----------|
@@ -47,7 +46,6 @@
 |-------------------|---------------|-----------------|
 | ![Mobile Dashboard](./public/assets/screenshots/mobile-dashboard.png) | ![Mobile Goals](./public/assets/screenshots/mobile-goals.png) | ![Mobile Sidebar](./public/assets/screenshots/mobile-sidebar.png) |
 
-> 📸 **To add screenshots:** Run the app, capture screenshots at different screen sizes, and save them in `public/assets/screenshots/` with the filenames above.
 
 ---
 
@@ -72,35 +70,7 @@
 - Node.js 18+ installed
 - npm (comes with Node.js)
 
-### Installation
 
-```bash
-# 1. Clone the repository
-git clone https://github.com/YOUR-USERNAME/goal-tracker.git
-cd goal-tracker
-
-# 2. Install dependencies
-npm install
-
-# 3. Start development server
-npm run dev
-```
-
-The app will open at `http://localhost:3000`.
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-Output will be in the `dist/` folder, ready to deploy on Vercel, Netlify, or GitHub Pages.
-
-### Preview Production Build
-
-```bash
-npm run preview
-```
 
 ---
 
@@ -112,28 +82,27 @@ The app supports two languages with full UI direction support:
 
 | Language | Direction | Code |
 |----------|-----------|------|
-| English | LTR (Left-to-Right) | `en` |
-| Persian (Farsi) | RTL (Right-to-Left) | `fa` |
+| English | LTR (Left-to-Right) | en |
+| Persian (Farsi) | RTL (Right-to-Left) | fa |
 
 ### How It Works
 
-1. **Direction Toggle**: When the user switches language in Settings, the `dir` attribute on `<html>` is set to either `"ltr"` or `"rtl"`
-2. **MUI Theme Direction**: The MUI theme receives the `direction` property, which automatically mirrors:
+1. Direction Toggle: When the user switches language in Settings, the dir attribute on <html> is set to either "ltr" or "rtl"
+2. MUI Theme Direction: The MUI theme receives the direction property, which automatically mirrors:
    - Navigation sidebar position (left → right)
    - Text alignment
    - Icon positions relative to text
    - Card borders and visual flow
    - Drawer anchor point
-3. **Translation System**: All text is loaded from `src/i18n/translation.js` which contains complete key-value pairs for both languages
-4. **Layout Preservation**: The layout does NOT break in RTL because:
-   - Flexbox `space-between` works bidirectionally
+3. Translation System: All text is loaded from src/i18n/translation.js which contains complete key-value pairs for both languages
+4. Layout Preservation: The layout does NOT break in RTL because:
+   - Flexbox space-between works bidirectionally
    - MUI components handle RTL automatically via the theme direction
    - Grid layouts adapt to the current direction
-   - Drawer slides from the correct side based on `lang`
+   - Drawer slides from the correct side based on lang
 
 ### Implementation Details
 
-```jsx
 // In App.jsx — direction is computed from lang state
 const dir = lang === "fa" ? "rtl" : "ltr";
 document.body.dir = dir;
@@ -143,7 +112,6 @@ createTheme({ direction, ... })
 
 // In Layout.jsx — drawer anchors based on language
 <Drawer anchor={lang === "fa" ? "right" : "left"} ...>
-```
 
 ---
 
@@ -155,15 +123,13 @@ Every time a user logs progress on a goal, they earn XP based on the goal type:
 
 | Goal Type | XP per Log |
 |-----------|-----------|
-| **Daily** | +10 XP |
-| **Count** | +20 XP |
-| **Time (minutes)** | +1 XP per 5 minutes logged |
+| Daily | +10 XP |
+| Count | +20 XP |
+| Time (minutes) | +1 XP per 5 minutes logged |
 
 ### Level Calculation
 
-```
 Level = floor(Total XP / 100) + 1
-```
 
 - Level 1: 0-99 XP
 - Level 2: 100-199 XP
@@ -178,7 +144,7 @@ Levels are displayed on the Dashboard and increment automatically when XP thresh
 
 ### Per-Goal Streak
 
-Tracks consecutive days a **specific goal** has been logged:
+Tracks consecutive days a specific goal has been logged:
 
 1. The system looks at all logs for that goal, sorted by date
 2. Starting from the most recent log date, it counts backwards
@@ -186,15 +152,13 @@ Tracks consecutive days a **specific goal** has been logged:
 4. If a gap of 2+ days is found, the streak breaks
 5. If no activity for 2+ days, streak resets to 0
 
-**Example:**
-```
+Example:
 Logs: Apr 28, Apr 29, Apr 30 → Streak: 3 days
 Logs: Apr 25, Apr 27, Apr 30 → Streak: 1 day (gap on Apr 26, Apr 28-29)
-```
 
 ### Global Streak
 
-Tracks consecutive days with **any goal activity**:
+Tracks consecutive days with any goal activity:
 
 1. Collects all log dates across ALL goals
 2. Removes duplicates (same day, multiple goals)
@@ -202,16 +166,15 @@ Tracks consecutive days with **any goal activity**:
 4. If the most recent activity was today or yesterday, the streak is active
 5. If no activity for 2+ days, streak resets to 0
 
-**Rules for Reset:**
-- Missing **one day** doesn't break the streak (grace period until end of next day)
-- Missing **two consecutive days** resets streak to 0
+Rules for Reset:
+- Missing one day doesn't break the streak (grace period until end of next day)
+- Missing two consecutive days resets streak to 0
 - Both global and per-goal streaks follow the same reset logic
 
 ---
 
 ## Project Structure
 
-```
 goal-tracker/
 ├── public/
 │   └── assets/
@@ -250,5 +213,3 @@ goal-tracker/
 ├── package.json
 ├── vite.config.js
 └── .gitignore
-```
-
